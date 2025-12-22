@@ -3,12 +3,6 @@ import validator from "validator";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-// const createToken = (id) => {
-//   return jwt.sign({ id }, process.env.JWT_SECRET, {
-//     expiresIn: 3 * 24 * 60 * 60,
-//   });
-// };
-
 const createToken = (user) => {
   return jwt.sign(
     {
@@ -31,7 +25,6 @@ const loginUser = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid email or password" });
     }
-    // const token = createToken(user._id);
     const token = createToken(user);
     res.json({ success: true, token });
   } catch (error) {
@@ -68,7 +61,6 @@ const registerUser = async (req, res) => {
 
     await newUser.save();
 
-    // const token = createToken(newUser._id);
     const token = createToken(newUser);
     res.json({ success: true, token });
   } catch (error) {
@@ -88,14 +80,6 @@ const adminLogin = async (req, res) => {
       email === process.env.ADMIN_EMAIL &&
       password === process.env.ADMIN_PASSWORD
     ) {
-      // const token = jwt.sign(
-      //   {
-      //     email: process.env.ADMIN_EMAIL,
-      //     role: "admin",
-      //   },
-      //   process.env.JWT_SECRET, {
-      //   expiresIn: '1h'
-      // });
       const token = jwt.sign(
         { id: "admin", role: "admin" },
         process.env.JWT_SECRET,

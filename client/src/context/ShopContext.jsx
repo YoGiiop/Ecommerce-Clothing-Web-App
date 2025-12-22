@@ -110,20 +110,6 @@ const ShopContextProvider = ({ children }) => {
     return totalAmount;
   };
 
-  // const getProductData = async () => {
-  //   try {
-  //     const response = await axios.get(`${backendUrl}/api/product/list`);
-  //     if (response.data.success) {
-  //       setProducts(response.data.products || []);
-  //     } else {
-  //       toast.error(response.data.message);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast.error("Error fetching products");
-  //   }
-  // };
-
   const getUserCart = async (token) => {
     try {
       if (!token) return;
@@ -167,11 +153,6 @@ const ShopContextProvider = ({ children }) => {
 
     fetchProducts();
   }, [backendUrl]);
-
-
-  // useEffect(() => {
-  //   getProductData();
-  // }, []);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
