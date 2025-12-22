@@ -2,7 +2,6 @@ import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { products as staticProducts } from '../assets/assets';
 
 const ShopContext = createContext();
 
@@ -16,6 +15,8 @@ const ShopContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [token, setToken] = useState("");
   const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(true);
 
   const addToCart = async (itemId, size) => {
     if (!size) {
@@ -76,7 +77,7 @@ const ShopContextProvider = ({ children }) => {
     if (token) {
       try {
         await axios.post(
-          backendUrl + "/api/cart/update",
+          `${backendUrl}/api/cart/update`,
           { itemId, size, quantity },
           {
             headers: {
@@ -109,25 +110,25 @@ const ShopContextProvider = ({ children }) => {
     return totalAmount;
   };
 
-  const getProductData = async () => {
-    try {
-      const response = await axios.get(backendUrl + "/api/product/list");
-      if (response.data.success) {
-        setProducts(response.data.products);
-      } else {
-        toast.error(response.data.message);
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Error fetching products");
-    }
-  };
+  // const getProductData = async () => {
+  //   try {
+  //     const response = await axios.get(`${backendUrl}/api/product/list`);
+  //     if (response.data.success) {
+  //       setProducts(response.data.products || []);
+  //     } else {
+  //       toast.error(response.data.message);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error("Error fetching products");
+  //   }
+  // };
 
   const getUserCart = async (token) => {
     try {
       if (!token) return;
       const response = await axios.post(
-        backendUrl + "/api/cart/get",
+        `${backendUrl}/api/cart/get`,
         {},
         {
           headers:  {
@@ -145,8 +146,32 @@ const ShopContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getProductData();
-  }, []);
+    const fetchProducts = async () => {
+      try {
+        const res = await axios.get(`${backendUrl}/api/product/list`);
+        console.log("Fetched from backend:", res.data);
+
+        if (res.data.success && Array.isArray(res.data.products)) {
+          setProducts(res.data.products);
+        } else {
+          console.warn("Unexpected product response:", res.data);
+          setProducts([]);
+        }
+      } catch (err) {
+        console.error("Error fetching products:", err.message);
+        setProducts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [backendUrl]);
+
+
+  // useEffect(() => {
+  //   getProductData();
+  // }, []);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
