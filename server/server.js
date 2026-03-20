@@ -21,6 +21,10 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors())
 
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
+
 app.use('/api/user', userRouter)
 app.use('/api/product', productRouter)
 app.use('/api/cart', cartRouter)
