@@ -13,7 +13,7 @@ const Contact = () => {
       </div>
 
       {/* Contact Information and Image Side-by-Side */}
-      <div className="my-16 mx-4 md:mx-16 flex flex-col md:flex-row items-center justify-between gap-16">
+      <div className="my-10 sm:my-14 mx-0 sm:mx-2 md:mx-8 lg:mx-12 flex flex-col md:flex-row items-center justify-between gap-8 lg:gap-14">
         {/* Text Section */}
         <div className="flex-1 flex flex-col gap-6 text-gray-600 justify-center">
           <h2 className="text-xl font-semibold text-gray-800">
@@ -27,7 +27,7 @@ const Contact = () => {
           </p>
           
           {/* Contact Info Section */}
-          <div className="mt-10">
+          <div className="mt-6">
             <h3 className="text-lg font-semibold text-gray-800">Contact Information</h3>
             <p><b>Phone:</b> +1 (800) 123-4567</p>
             <p><b>Email:</b> contact@forever.com</p>
@@ -36,8 +36,8 @@ const Contact = () => {
         </div>
 
         {/* Image Section */}
-        <div className="flex-1">
-          <img src={assets.contact_img} alt="Contact Us" className="w-full md:w-3/4 rounded-lg shadow-xl"/>
+        <div className="flex-1 w-full">
+          <img src={assets.contact_img} alt="Contact Us" className="w-full md:w-4/5 lg:w-3/4 rounded-lg shadow-xl mx-auto"/>
         </div>
       </div>
 

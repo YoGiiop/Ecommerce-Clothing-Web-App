@@ -18,7 +18,7 @@ const ShopContextProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(true);
 
-  const addToCart = async (itemId, size) => {
+  const addToCart = async (itemId, size, quantity = 1) => {
     if (!size) {
       toast.error("Please select a size");
       return;
@@ -28,13 +28,13 @@ const ShopContextProvider = ({ children }) => {
 
     if (cartData[itemId]) {
       if (cartData[itemId][size]) {
-        cartData[itemId][size] += 1;
+        cartData[itemId][size] += quantity;
       } else {
-        cartData[itemId][size] = 1;
+        cartData[itemId][size] = quantity;
       }
     } else {
       cartData[itemId] = {};
-      cartData[itemId][size] = 1;
+      cartData[itemId][size] = quantity;
     }
 
     setCartItems(cartData);
@@ -43,7 +43,7 @@ const ShopContextProvider = ({ children }) => {
       try {
         await axios.post(
           backendUrl + "/api/cart/add",
-          { itemId, size },
+          { itemId, size, quantity },
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -51,10 +51,12 @@ const ShopContextProvider = ({ children }) => {
           }
         );
       } catch (error) {
-        console.log(error);
+        // ...existing code...
         toast.error("Error adding to cart");
       }
     }
+
+    toast.success(`Added to cart! (${quantity} item${quantity > 1 ? 's' : ''})`);
   };
 
   const getCartCount = () => {
@@ -86,7 +88,7 @@ const ShopContextProvider = ({ children }) => {
           }
         );
       } catch (error) {
-        console.log(error);
+        // ...existing code...
         toast.error("Error updating cart");
       }
     }
@@ -104,7 +106,7 @@ const ShopContextProvider = ({ children }) => {
           }
         }
       } else {
-        console.log(`Product with id ${items} not found`);
+        // ...existing code...
       }
     }
     return totalAmount;
@@ -126,7 +128,7 @@ const ShopContextProvider = ({ children }) => {
         setCartItems(response.data.cartData);
       }
     } catch (error) {
-      console.log(error);
+      // ...existing code...
       toast.error("Error fetching cart");
     }
   };
@@ -135,7 +137,7 @@ const ShopContextProvider = ({ children }) => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(`${backendUrl}/api/product/list`);
-        console.log("Fetched from backend:", res.data);
+        // ...existing code...
 
         if (res.data.success && Array.isArray(res.data.products)) {
           setProducts(res.data.products);

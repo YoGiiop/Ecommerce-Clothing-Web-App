@@ -3,7 +3,7 @@ import {v2 as cloudinary} from 'cloudinary';
 import upload from "../middleware/multer.js";
 
 const addProduct = async (req, res) => {
-    console.log(req.body);
+    // ...existing code...
     try {
         const { name, description, price, category, subCategory, sizes, bestseller} = req.body;
 

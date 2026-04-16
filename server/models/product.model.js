@@ -32,6 +32,11 @@ const productSchema = new mongoose.Schema({
   bestseller: {
     type: Boolean,
   },
+  stock: {
+    type: Number,
+    required: true,
+    default: 50
+  },
   date: {
     type: Number,
     required: true,

@@ -12,10 +12,10 @@ const About = () => {
       </div>
 
       {/* About Us Content */}
-      <div className='my-10 flex flex-col md:flex-row gap-16'>
+      <div className='my-10 flex flex-col md:flex-row gap-8 lg:gap-12'>
         <img src={assets.about_img} alt="About Forever" className='w-full md:max-w-[450px] rounded-xl shadow-lg' />
 
-        <div className='flex flex-col gap-6 md:w-2/4 text-gray-600 justify-center'>
+        <div className='flex flex-col gap-5 md:w-2/4 text-gray-600 justify-center'>
           <p>
             At Forever, we believe in creating timeless products that blend style, quality, and sustainability. Our journey began with a simple mission: to provide customers with thoughtfully designed pieces that last—not just in quality, but also in meaning. Every product we create is a reflection of our commitment to excellence, detail, and authenticity.
           </p>
@@ -36,22 +36,22 @@ const About = () => {
         <Title text1={"WHY"} text2={"CHOOSE US"} />
       </div>
 
-      <div className='flex-col flex md:flex-row gap-20 text-sm md:text-base'>
-        <div className='flex flex-col border rounded-xl px-10 md:px-16 py-8 sm:py-10 gap-5 shadow-lg hover:shadow-2xl transition-all'>
+      <div className='flex-col flex md:flex-row gap-6 lg:gap-8 text-sm md:text-base'>
+        <div className='flex flex-col border rounded-xl px-6 sm:px-8 md:px-10 py-8 sm:py-10 gap-5 shadow-lg hover:shadow-2xl transition-all'>
             <b className='font-semibold text-gray-800'>Quality Assurance:</b>
             <p className='text-gray-600'>
               At Forever, we take pride in offering products of the highest quality, ensuring that every item is carefully selected and meticulously crafted to perfection. Our commitment to quality means you can trust that each purchase is an investment in long-lasting excellence.
             </p>
         </div>
 
-        <div className='flex flex-col border rounded-xl px-10 md:px-16 py-8 sm:py-10 gap-5 shadow-lg hover:shadow-2xl transition-all'>
+        <div className='flex flex-col border rounded-xl px-6 sm:px-8 md:px-10 py-8 sm:py-10 gap-5 shadow-lg hover:shadow-2xl transition-all'>
             <b className='font-semibold text-gray-800'>Convenience:</b>
             <p className='text-gray-600'>
               Shopping with Forever is a seamless experience. Our website is designed to be intuitive and easy to navigate, allowing you to find what you need in just a few clicks. Whether you’re searching for your next wardrobe staple or a special gift, we make it easy to shop with confidence.
             </p>
         </div>
 
-        <div className='flex flex-col border rounded-xl px-10 md:px-16 py-8 sm:py-10 gap-5 shadow-lg hover:shadow-2xl transition-all'>
+        <div className='flex flex-col border rounded-xl px-6 sm:px-8 md:px-10 py-8 sm:py-10 gap-5 shadow-lg hover:shadow-2xl transition-all'>
             <b className='font-semibold text-gray-800'>Customer Satisfaction:</b>
             <p className='text-gray-600'>
               We are committed to delivering exceptional customer service. Your satisfaction is our top priority, and we are always here to assist you with any questions or concerns. Our customer-first approach ensures that every interaction with us is positive and hassle-free.
